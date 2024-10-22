@@ -1,7 +1,7 @@
 import UIKit
 
 final class TrackersViewController: UIViewController {
-    
+
     private var trackerCollection: UICollectionView!
     private var datePicker: UIDatePicker!
     private var searchController: UISearchController!
@@ -106,16 +106,18 @@ extension TrackersViewController {
 
     @objc
     private func addTracker() {
-        let addTrackerViewController = AddTrackerViewController()
-        addTrackerViewController.delegate = self
-        addTrackerViewController.modalPresentationStyle = .automatic
-        present(addTrackerViewController, animated: true, completion: nil)
+        let newVC = CreateNewTrackerViewController()
+        newVC.delegate = self
+        newVC.modalPresentationStyle = .popover
+        present(newVC, animated: true, completion: nil)
     }
 
     private func setUpDatePicker() {
         datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .compact
         datePicker.datePickerMode = .date
+        datePicker.calendar.firstWeekday = 2
+        datePicker.maximumDate = Date()
         datePicker.locale = Locale(identifier: "ru_RU")
         datePicker.addTarget(
             self,
@@ -131,10 +133,13 @@ extension TrackersViewController {
 
         filterContentForData()
     }
+    
+    
 
     private func filterContentForData() {
         let dayNumber = Calendar.current.component(.weekday, from: currentDate)
-        let currentWeekDate = WeekDay.allCases[dayNumber - 1]
+        let dayOfWeekIndex = (dayNumber + 5) % 7
+        let currentWeekDate = DayOfWeek.allCases[dayOfWeekIndex]
         filteredCategories.removeAll()
 
         guard !categories.isEmpty else { return }
@@ -330,10 +335,19 @@ extension TrackersViewController: TrackerCellButtonDelegate {
 
 //MARK: - AddTrackerDelegate
 
-extension TrackersViewController: AddTrackerDelegate {
-    func didAddTracker(_ tracker: Tracker) {
+extension TrackersViewController: CreateTrackerViewControllerDelegate {
+    func didCreateNewHabit(_ tracker: Tracker) {
         let trackerCategory = TrackerCategory(title: "Новая категория", trackers: [tracker])
         categories.append(trackerCategory)
         trackerCollection.reloadData()
+    }
+}
+
+extension TrackersViewController: CreateTrackerDelegate {
+    func didCreateNewTracker(_ tracker: Tracker) {
+        let trackerCategory = TrackerCategory(title: "Новая категория", trackers: [tracker])
+        categories.append(trackerCategory)
+        trackerCollection.reloadData()
+        print("Добавлена новая привычка")
     }
 }

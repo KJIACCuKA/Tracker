@@ -4,7 +4,7 @@ final class StatisticViewController: UIViewController {
 
     //MARK: - Создание UI-Элементов
     
-    private let statisticLabel: UILabel = {
+    private lazy var statisticLabel: UILabel = {
         let label = UILabel()
         label.text = "Статистика"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -13,7 +13,7 @@ final class StatisticViewController: UIViewController {
         return label
     }()
     
-    private let descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Анализировать пока нечего"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ final class StatisticViewController: UIViewController {
         return label
     }()
     
-    private let sadImageView: UIImageView = {
+    private lazy var sadImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
