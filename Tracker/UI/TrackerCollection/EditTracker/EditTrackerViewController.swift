@@ -5,7 +5,12 @@ protocol EditTrackerDelegate: AnyObject {
 }
 
 final class EditTrackerViewController: UIViewController {
+    
+    // MARK: - Public Properties
+    
     weak var delegate: EditTrackerDelegate?
+    
+    // MARK: - Private Properties
 
     private var tableView: UITableView = UITableView()
     private var typeTitle: UILabel = UILabel()
@@ -24,6 +29,8 @@ final class EditTrackerViewController: UIViewController {
     private var trackerName: String
     private var isPinned: Bool
     private var id: UUID
+    
+    // MARK: - Initializers
 
     init(tracker: Tracker, categoryName: String) {
         self.selectedWeekdays = tracker.timetable
@@ -40,6 +47,8 @@ final class EditTrackerViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Life Cycles
 
     override func viewDidLoad() {
         super.viewDidLoad()

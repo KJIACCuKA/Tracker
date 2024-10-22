@@ -11,6 +11,8 @@ final class ChoiceTrackerViewController: UIViewController {
     private var eventButton: UIButton!
     private var typeTitle: UILabel!
     
+    // MARK: - View Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

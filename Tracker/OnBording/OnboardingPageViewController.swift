@@ -1,6 +1,9 @@
 import UIKit
 
-final class OnboardingPageViewController: UIPageViewController {    
+final class OnboardingPageViewController: UIPageViewController {  
+    
+    // MARK: - Private Properties
+    
     private var doneButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
@@ -32,6 +35,8 @@ final class OnboardingPageViewController: UIPageViewController {
         return [first, second]
     }()
     
+    // MARK: - Initializers
+    
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
     }
@@ -39,6 +44,8 @@ final class OnboardingPageViewController: UIPageViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +60,8 @@ final class OnboardingPageViewController: UIPageViewController {
         setupUI()
     }
 }
+
+//MARK: - OnboardingPageViewController
 
 extension OnboardingPageViewController {
     private func setupUI() {

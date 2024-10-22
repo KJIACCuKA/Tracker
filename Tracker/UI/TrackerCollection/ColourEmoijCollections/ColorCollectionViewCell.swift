@@ -1,6 +1,9 @@
 import UIKit
 
 final class ColorCollectionViewCell: UICollectionViewCell {
+    
+    static let cellID = "colorCollectionViewCell"
+    
     let colorView: UIView = {
         let view = UIView()
         return view
@@ -10,6 +13,8 @@ final class ColorCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.addSubview(colorView)
+        colorView.layer.cornerRadius = 8
+        colorView.layer.masksToBounds = true
     }
     
     override func layoutSubviews() {

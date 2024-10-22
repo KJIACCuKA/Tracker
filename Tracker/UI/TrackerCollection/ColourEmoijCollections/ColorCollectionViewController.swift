@@ -20,7 +20,7 @@ final class ColorCollectionViewController: UIViewController {
                                                           cellSpacing: 5)
     
     let colorCollectionView: UICollectionView = {
-        let layout = UICollectionViewLayout()
+        let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout
@@ -28,7 +28,7 @@ final class ColorCollectionViewController: UIViewController {
         layout.headerReferenceSize = .init(width: 50, height: 50)
         collectionView.isScrollEnabled = false
         
-        collectionView.register(ColorCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(ColorCollectionViewCell.self, forCellWithReuseIdentifier: ColorCollectionViewCell.cellID)
         collectionView.register(
             SupplementaryView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -69,14 +69,12 @@ extension ColorCollectionViewController: UICollectionViewDataSource {
     
     func collectionView( _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "Cell",
+            withReuseIdentifier: ColorCollectionViewCell.cellID,
             for: indexPath) as? ColorCollectionViewCell else {
             return UICollectionViewCell()
         }
         
         cell.colorView.backgroundColor = colors[indexPath.row]
-        cell.colorView.layer.cornerRadius = 8
-        cell.colorView.layer.masksToBounds = true
 
         if let selectedColor, selectedColor == colors[indexPath.row] {
             cell.layer.borderWidth = 3

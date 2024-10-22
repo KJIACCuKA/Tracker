@@ -9,6 +9,9 @@ protocol TrackerCellButtonDelegate: AnyObject {
 }
 
 final class TrackerCell: UICollectionViewCell {
+    
+    // MARK: - Public Properties
+    
     static let reuseIdentifier = "trackerCell"
 
     var counterLabel: UILabel!
@@ -22,9 +25,13 @@ final class TrackerCell: UICollectionViewCell {
     }
 
     weak var delegate: TrackerCellButtonDelegate?
+    
+    // MARK: - Private Properties
 
     private var trackerCardView = TrackerCardView()
     private var isButtonSelected: Bool = false
+    
+    // MARK: - Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)

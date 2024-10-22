@@ -7,9 +7,35 @@ protocol AddTrackerDelegate: AnyObject {
 final class AddTrackerViewController: UIViewController {
     weak var delegate: AddTrackerDelegate?
     
-    private var tableView: UITableView = UITableView()
+    // MARK: - Private Properties
+    
     private var typeTitle: UILabel = UILabel()
-    private var textField: UITextField = UITextField()
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.layer.cornerRadius = 16
+        tableView.layer.masksToBounds = true
+        tableView.isScrollEnabled = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.rowHeight = UITableView.automaticDimension
+        return tableView
+    }()
+    
+    private lazy var textField: UITextField = {
+        let textField = UITextField()
+        textField.delegate = self
+        textField.backgroundColor = .ypBackgroundDay
+        textField.layer.cornerRadius = 16
+        textField.placeholder = NSLocalizedString("addTracker.textFieldPlaceholder", comment: "")
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 0))
+        textField.leftView = leftView
+        textField.leftViewMode = .always
+        textField.textAlignment = .left
+        return textField
+    }()
+    
     private var saveButton: UIButton = UIButton()
     private var emojiCollectionViewController = EmojiMixesViewController()
     private var colorCollectionViewController = ColorCollectionViewController()
@@ -23,6 +49,8 @@ final class AddTrackerViewController: UIViewController {
     private var selectedColor: UIColor = UIColor()
     private var selectedCategory: String = ""
     
+    // MARK: - Initializers
+    
     init(cellsNumber: Int) {
         self.cellsNumber = cellsNumber
         super.init(nibName: nil, bundle: nil)
@@ -31,6 +59,8 @@ final class AddTrackerViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +75,6 @@ extension AddTrackerViewController {
         
         scrollView.isScrollEnabled = true
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.layer.cornerRadius = 16
-        tableView.layer.masksToBounds = true
-        tableView.isScrollEnabled = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = UITableView.automaticDimension
         tableViewHeightConstraint.constant = CGFloat(75 * cellsNumber)
         tableViewHeightConstraint.isActive = true
         
@@ -64,15 +87,6 @@ extension AddTrackerViewController {
         
         typeTitle.textColor = .ypBlackDay
         typeTitle.font = .systemFont(ofSize: 16, weight: .medium)
-        
-        textField.delegate = self
-        textField.backgroundColor = .ypBackgroundDay
-        textField.layer.cornerRadius = 16
-        textField.placeholder = NSLocalizedString("addTracker.textFieldPlaceholder", comment: "")
-        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 0))
-        textField.leftView = leftView
-        textField.leftViewMode = .always
-        textField.textAlignment = .left
         
         let discardButton = setupActionButtonUI()
         discardButton.setTitle(NSLocalizedString("addTracker.discardButton", comment: ""), for: .normal)

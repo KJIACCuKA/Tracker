@@ -5,7 +5,12 @@ protocol AddNewCategoryDelegate: AnyObject {
 }
 
 final class AddNewCategoryViewController: UIViewController {
+    
+    // MARK: - Public Properties
+    
     weak var delegate: AddNewCategoryDelegate?
+    
+    // MARK: - Private Properties
     
     private var typeTitle: UILabel = {
         let typeTitle = UILabel()
@@ -41,12 +46,16 @@ final class AddNewCategoryViewController: UIViewController {
         return button
     }()
     
+    // MARK: - View Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
     }
 }
+
+//MARK: - AddNewCategoryViewController
 
 extension AddNewCategoryViewController {
     private func setupUI() {
@@ -99,13 +108,6 @@ extension AddNewCategoryViewController: UITextFieldDelegate {
                               limit: 38)
     }
     
-    private func textLimit(existingText: String?,
-                           newText: String,
-                           limit: Int) -> Bool {
-        let text = existingText ?? ""
-        let isAtLimit = text.count + newText.count <= limit
-        return isAtLimit
-    }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         checkConditions()
@@ -114,5 +116,13 @@ extension AddNewCategoryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    private func textLimit(existingText: String?,
+                           newText: String,
+                           limit: Int) -> Bool {
+        let text = existingText ?? ""
+        let isAtLimit = text.count + newText.count <= limit
+        return isAtLimit
     }
 }

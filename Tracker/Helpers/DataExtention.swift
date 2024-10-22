@@ -6,6 +6,6 @@ extension Date {
         formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.dateFormat = "yyyy-MM-dd"
         let dateString = formatter.string(from: self)
-        return formatter.date(from: dateString)!
+        return formatter.date(from: dateString) ?? Date()
     }
 }

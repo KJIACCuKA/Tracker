@@ -1,6 +1,9 @@
 import UIKit
 
 final class CategoryNameTableViewCell: UITableViewCell {
+    
+    //MARK: - Public Properties
+    
     var viewModel: CategoryNameViewModel? {
         didSet {
             viewModel?.nameBinding = { [weak self] name in
@@ -8,19 +11,27 @@ final class CategoryNameTableViewCell: UITableViewCell {
             }
         }
     }
-
-    private let checkmarkView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "ypCheck"))
-        view.isHidden = true
-
-        return view
-    }()
-
+    
     var showCheckmark: Bool = false {
         didSet {
             checkmarkView.isHidden = !showCheckmark
         }
     }
+    
+    var showSeparator: Bool = true {
+        didSet {
+            customSeparatorView.isHidden = !showSeparator
+        }
+    }
+    
+    //MARK: - Private Properties
+    
+    private let checkmarkView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "ypCheck"))
+        view.isHidden = true
+        
+        return view
+    }()
 
     private let categoryLabel: UILabel = {
         let label = UILabel()
@@ -30,12 +41,8 @@ final class CategoryNameTableViewCell: UITableViewCell {
     }()
 
     private let customSeparatorView = UIView()
-
-    var showSeparator: Bool = true {
-        didSet {
-            customSeparatorView.isHidden = !showSeparator
-        }
-    }
+    
+    // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,12 +53,23 @@ final class CategoryNameTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Overrides Methods
 
     override func prepareForReuse() {
       super.prepareForReuse()
       customSeparatorView.isHidden = false
       checkmarkView.isHidden = true
      }
+    
+    // MARK: - Public Methods
+    
+    func getLabelText() -> String? {
+        return categoryLabel.text
+    }
+    
+    
+    // MARK: - Private Methods
 
     private func setupUI() {
         contentView.backgroundColor = .ypBackgroundDay
@@ -81,7 +99,4 @@ final class CategoryNameTableViewCell: UITableViewCell {
         ])
     }
 
-    func getLabelText() -> String? {
-        return categoryLabel.text
-    }
 }

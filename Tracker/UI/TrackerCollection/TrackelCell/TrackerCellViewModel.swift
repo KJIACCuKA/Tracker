@@ -1,6 +1,7 @@
 import UIKit
 
 final class TrackerCellViewModel {
+    
     private let emojiLabel: String
     private let titleLabel: String
     private let viewColor: UIColor

@@ -1,6 +1,9 @@
 import UIKit
 
 final class EmojiMixCollectionViewCell: UICollectionViewCell {
+    
+    static let emojiCellID = "emojiCell"
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 32, weight: .bold)

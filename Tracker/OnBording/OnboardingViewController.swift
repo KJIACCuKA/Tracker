@@ -1,6 +1,9 @@
 import UIKit
 
 final class OnboardingViewController: UIViewController {
+    
+    // MARK: - Private Properties
+    
     private var typeTitle: UILabel = {
         let typeTitle = UILabel()
         typeTitle.textColor = .ypBlackAny
@@ -16,6 +19,8 @@ final class OnboardingViewController: UIViewController {
         return image
     }()
     
+    // MARK: - Initializers
+    
     init(image: String, text: String) {
         self.typeTitle.text = text
         self.image.image = UIImage(named: image) ?? UIImage()
@@ -27,6 +32,8 @@ final class OnboardingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - View Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +41,10 @@ final class OnboardingViewController: UIViewController {
     }
 }
 
+//MARK: - OnboardingViewController
+
 extension OnboardingViewController {
+    
     private func setupUI() {
         [image, typeTitle].forEach {
             view.addSubview($0)

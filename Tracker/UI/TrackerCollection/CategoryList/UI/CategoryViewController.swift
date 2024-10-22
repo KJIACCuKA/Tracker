@@ -5,7 +5,12 @@ protocol CategoryDelegate: AnyObject {
 }
 
 final class CategoryViewController: UIViewController {
+    
+    // MARK: - Public Properties
+    
     weak var delegate: CategoryDelegate?
+    
+    // MARK: - Private Properties
 
     private var viewModel: CategoryNamesViewModel
 
@@ -60,6 +65,8 @@ final class CategoryViewController: UIViewController {
         labelStub.textAlignment = .center
         return labelStub
     }()
+    
+    // MARK: - Initializers
 
     init(viewModel: CategoryNamesViewModel) {
         self.viewModel = viewModel
@@ -69,6 +76,8 @@ final class CategoryViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Life Cycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +92,8 @@ final class CategoryViewController: UIViewController {
         }
     }
 }
+
+//MARK: - CategoryViewController
 
 extension CategoryViewController {
     private func setupUI() {

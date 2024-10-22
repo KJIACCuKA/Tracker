@@ -6,6 +6,8 @@ protocol FilterChoiceDelegate: AnyObject {
 
 final class FilterChoiceViewController: UIViewController {
     weak var delegate: FilterChoiceDelegate?
+    
+    // MARK: - Private Properties
 
     private let filters = Filter.allCases
 //    private let filters = Filter.allCasesRawValue
@@ -32,6 +34,8 @@ final class FilterChoiceViewController: UIViewController {
     }()
 
     private var selectedFilter: Filter?
+    
+    // MARK: - Initializers
 
     init(selectedFilter: Filter?) {
         self.selectedFilter = selectedFilter
@@ -41,6 +45,8 @@ final class FilterChoiceViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Life Cycles
 
     override func viewDidLoad() {
         super.viewDidLoad()

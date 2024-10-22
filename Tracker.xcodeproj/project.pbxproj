@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		342F13D368CFFAE7629F872E /* Pods_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE829F1F9A9199496C903955 /* Pods_Tracker.framework */; };
+		562CA3362CC78CBC0018AB69 /* CAGradientLayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562CA3352CC78CBC0018AB69 /* CAGradientLayerExtension.swift */; };
+		562CA3382CC78E240018AB69 /* WeekdayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562CA3372CC78E240018AB69 /* WeekdayTableViewCell.swift */; };
 		BE1351942BCD34BA00910172 /* CategoryNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1351932BCD34BA00910172 /* CategoryNameTableViewCell.swift */; };
 		BE1351962BCD34DE00910172 /* AddNewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1351952BCD34DE00910172 /* AddNewCategoryViewController.swift */; };
 		BE1351992BCD388100910172 /* CategoryNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1351982BCD388100910172 /* CategoryNameViewModel.swift */; };
@@ -75,6 +77,8 @@
 /* Begin PBXFileReference section */
 		01AC9D007DB07B5496571364 /* Pods-Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Tracker/Pods-Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		234B2C6DBD8B34F1FE253998 /* Pods-Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker.release.xcconfig"; path = "Target Support Files/Pods-Tracker/Pods-Tracker.release.xcconfig"; sourceTree = "<group>"; };
+		562CA3352CC78CBC0018AB69 /* CAGradientLayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtension.swift; sourceTree = "<group>"; };
+		562CA3372CC78E240018AB69 /* WeekdayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayTableViewCell.swift; sourceTree = "<group>"; };
 		AE829F1F9A9199496C903955 /* Pods_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE1351932BCD34BA00910172 /* CategoryNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryNameTableViewCell.swift; sourceTree = "<group>"; };
 		BE1351952BCD34DE00910172 /* AddNewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				BE9CF5B62BB577C800D2DE8D /* ScheduleViewController.swift */,
+				562CA3372CC78E240018AB69 /* WeekdayTableViewCell.swift */,
 			);
 			path = ScheduleList;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 			children = (
 				BE601FB52BD14A8400A58082 /* DataExtention.swift */,
 				BE601FB72BD14ABA00A58082 /* UICollectionExtention.swift */,
+				562CA3352CC78CBC0018AB69 /* CAGradientLayerExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -588,6 +594,7 @@
 				BE64E3AB2BCBC787001AE582 /* TrackersViewModal.swift in Sources */,
 				BE9CF5FE2BC1456D00D2DE8D /* TrackerStore.swift in Sources */,
 				BE29CB882BA0C1E000BA4C7E /* StatisticViewController.swift in Sources */,
+				562CA3362CC78CBC0018AB69 /* CAGradientLayerExtension.swift in Sources */,
 				BE64E3692BC48BA5001AE582 /* ColorCollectionViewCell.swift in Sources */,
 				BE9CF6002BC1458100D2DE8D /* TrackerCategoryStore.swift in Sources */,
 				BE9CF6022BC1458A00D2DE8D /* TrackerRecordStore.swift in Sources */,
@@ -610,6 +617,7 @@
 				BE601FAB2BD0682100A58082 /* StatisticCardView.swift in Sources */,
 				BE64E3D32BCC1048001AE582 /* OnboardingPageViewController.swift in Sources */,
 				BE1351942BCD34BA00910172 /* CategoryNameTableViewCell.swift in Sources */,
+				562CA3382CC78E240018AB69 /* WeekdayTableViewCell.swift in Sources */,
 				BE64E3612BC4008F001AE582 /* EmojiMixCollectionViewCell.swift in Sources */,
 				BE64E3A32BCB37E4001AE582 /* Binging.swift in Sources */,
 				BE7F96D42B987C760073F9FC /* SceneDelegate.swift in Sources */,

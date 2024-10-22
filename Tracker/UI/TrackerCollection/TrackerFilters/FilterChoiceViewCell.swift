@@ -1,6 +1,9 @@
 import UIKit
 
 final class FilterChoiceViewCell: UITableViewCell {
+    
+    // MARK: - Public Properties
+    
     var showCheckmark: Bool = false {
         didSet {
             checkmarkView.isHidden = !showCheckmark
@@ -21,6 +24,8 @@ final class FilterChoiceViewCell: UITableViewCell {
             customSeparatorView.isHidden = !showSeparator
         }
     }
+    
+    // MARK: - Private Properties
 
     private let checkmarkView: UIImageView = {
         let view = UIImageView(image: UIImage(named: "ypCheck"))
@@ -30,6 +35,8 @@ final class FilterChoiceViewCell: UITableViewCell {
     }()
 
     private let customSeparatorView = UIView()
+    
+    // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,12 +47,16 @@ final class FilterChoiceViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Overrides Methods
 
     override func prepareForReuse() {
       super.prepareForReuse()
       customSeparatorView.isHidden = false
       checkmarkView.isHidden = true
      }
+    
+    // MARK: - Private Methods
 
     private func setupUI() {
         contentView.backgroundColor = .ypBackgroundDay

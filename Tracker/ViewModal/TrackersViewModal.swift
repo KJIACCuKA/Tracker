@@ -1,6 +1,9 @@
 import Foundation
 
 final class TrackersViewModal {
+    
+    var categoriesBinding: Binding<[TrackerCategory]>?
+    
     private let trackerCategoryStore = TrackerCategoryStore()
 
     private var categories: [TrackerCategory] = [] {
@@ -9,7 +12,6 @@ final class TrackersViewModal {
         }
     }
 
-    var categoriesBinding: Binding<[TrackerCategory]>?
 
     init() {
         trackerCategoryStore.delegate = self

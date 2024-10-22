@@ -29,7 +29,7 @@ final class EmojiMixesViewController: UIViewController {
         layout.headerReferenceSize = .init(width: 50, height: 50)
         collectionView.isScrollEnabled = false
         
-        collectionView.register(EmojiMixCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(EmojiMixCollectionViewCell.self, forCellWithReuseIdentifier: EmojiMixCollectionViewCell.emojiCellID)
         collectionView.register(
             SupplementaryView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -69,7 +69,7 @@ extension EmojiMixesViewController: UICollectionViewDataSource {
     }
     
     func collectionView( _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? EmojiMixCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmojiMixCollectionViewCell.emojiCellID, for: indexPath) as? EmojiMixCollectionViewCell else { return UICollectionViewCell() }
 
         cell.updateLabel(title: emojies[indexPath.row])
 
@@ -91,7 +91,7 @@ extension EmojiMixesViewController: UICollectionViewDataSource {
                 for: indexPath) as? SupplementaryView else {
                     return UICollectionReusableView()
                 }
-            view.titleLabel.text = "Цвет"
+            view.titleLabel.text = "Emoji"
             return view
         default:
             return UICollectionReusableView()

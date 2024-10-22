@@ -29,6 +29,8 @@ final class TrackersViewController: UIViewController {
                                          leftInset: 16,
                                          rightInset: 16,
                                          cellSpacing: 9)
+    
+    // MARK: - View Life Cycles
 
     override func viewDidLoad() {
         super.viewDidLoad()

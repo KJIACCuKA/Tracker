@@ -1,6 +1,7 @@
 import UIKit
 
 extension UICollectionView {
+    
     func setEmptyMessage(message: String, image: String) {
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
         emptyView.backgroundColor = .ypWhite

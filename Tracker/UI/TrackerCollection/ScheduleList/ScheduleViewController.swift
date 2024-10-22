@@ -5,7 +5,12 @@ protocol ScheduleDelegate: AnyObject {
 }
 
 final class ScheduleViewController: UIViewController {
+    
+    // MARK: - Public Properties
+    
     weak var delegate: ScheduleDelegate?
+    
+    // MARK: - Private Properties
 
     private let weekdays = WeekDay.allCasesRawValue
 
@@ -24,7 +29,7 @@ final class ScheduleViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.layer.cornerRadius = 16
         tableView.layer.masksToBounds = true
-        tableView.register(WeekdayTableViewCell.self, forCellReuseIdentifier: "weekdayCell")
+        tableView.register(WeekdayTableViewCell.self, forCellReuseIdentifier: WeekdayTableViewCell.weekdayCellID)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         return tableView
@@ -43,6 +48,8 @@ final class ScheduleViewController: UIViewController {
     }()
 
     private var selectedWeekdays: [WeekDay] = []
+    
+    // MARK: - Initializers
 
     init(selectedWeekdays: [WeekDay]) {
         self.selectedWeekdays = selectedWeekdays
@@ -52,6 +59,8 @@ final class ScheduleViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Life Cycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,13 +97,15 @@ final class ScheduleViewController: UIViewController {
     }
 }
 
+//MARK: - ScheduleViewController
+
 extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weekdays.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "weekdayCell", for: indexPath) as? WeekdayTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeekdayTableViewCell.weekdayCellID, for: indexPath) as? WeekdayTableViewCell else {
             return UITableViewCell()
         }
 
@@ -153,92 +164,4 @@ extension ScheduleViewController: WeekdayTableViewCellDelegate {
 
 protocol WeekdayTableViewCellDelegate: AnyObject {
     func switchStateChanged(for weekday: WeekDay?, isOn: Bool)
-}
-
-final class WeekdayTableViewCell: UITableViewCell {
-    weak var delegate: WeekdayTableViewCellDelegate?
-
-    var weekday: WeekDay?
-
-    var weekdayLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-
-    private let weekdaySwitch: UISwitch = {
-        let weekdaySwitch = UISwitch()
-        return weekdaySwitch
-    }()
-
-    private let customSeparatorView = UIView()
-
-    var showSeparator: Bool = true {
-        didSet {
-            customSeparatorView.isHidden = !showSeparator
-        }
-    }
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        selectionStyle = .none
-
-        addSubview(weekdayLabel)
-        addSubview(weekdaySwitch)
-
-        weekdayLabel.translatesAutoresizingMaskIntoConstraints = false
-        weekdaySwitch.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            weekdayLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            weekdayLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-
-            weekdaySwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            weekdaySwitch.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-
-        setupSeparatorView()
-
-        weekdaySwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
-    }
-
-    private func setupSeparatorView() {
-        contentView.addSubview(customSeparatorView)
-        customSeparatorView.backgroundColor = .ypLightGay
-        customSeparatorView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            customSeparatorView.heightAnchor.constraint(equalToConstant: 1),
-            customSeparatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            customSeparatorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            customSeparatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    @objc private func switchValueChanged(_ sender: UISwitch) {
-        delegate?.switchStateChanged(for: weekday, isOn: sender.isOn)
-    }
-
-    func getWeekdaySwitchIsOn() -> Bool {
-        return weekdaySwitch.isOn
-    }
-
-    func weekdaySwitchIsOn(_ flag: Bool) {
-        weekdaySwitch.isOn = flag
-        if weekdaySwitch.isOn {
-            setTintWeekdaySwitch()
-        }
-    }
-
-    func setTintWeekdaySwitch() {
-        weekdaySwitch.onTintColor = .ypBlue
-    }
-
-    func weekdaySwitchSetOn() {
-        weekdaySwitch.setOn(!weekdaySwitch.isOn, animated: false)
-    }
 }
