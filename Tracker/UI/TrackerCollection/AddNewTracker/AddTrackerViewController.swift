@@ -46,7 +46,7 @@ final class AddTrackerViewController: UIViewController {
     private var cellsNumber: Int
     private var selectedWeekdays: [WeekDay] = []
     private var selectedEmoji = ""
-    private var selectedColor: UIColor = UIColor()
+    private var selectedColor: UIColor? = nil
     private var selectedCategory: String = ""
     
     // MARK: - Initializers
@@ -185,7 +185,7 @@ extension AddTrackerViewController {
             let newTracker = Tracker(
                 id: UUID(),
                 name: trackerName,
-                color: selectedColor,
+                color: selectedColor ?? .clear,
                 emoji: selectedEmoji,
                 timetable: selectedWeekdays,
                 isPinned: false
